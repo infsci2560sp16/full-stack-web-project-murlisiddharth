@@ -32,7 +32,7 @@ public class authentication {
 				 	
 			        Statement stmt = connect.createStatement();
 			        stmt.executeUpdate("Insert into appUser values "
-			        		+ "("+ username +","+ password +","+ role +","+firstname+","+lastname+")");
+			        		+ "('"+ username +"','"+ password +"','"+ role +"','"+firstname+"','"+lastname+"')");
 			        attributes.put("messages","Success");
 			        return new ModelAndView(attributes, "test.ftl");
 			        /*ArrayList<String> output = new ArrayList<String>();
