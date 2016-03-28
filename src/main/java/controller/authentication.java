@@ -33,8 +33,8 @@ public class authentication {
 			        Statement stmt = connect.createStatement();
 			        stmt.executeUpdate("Insert into appUser values "
 			        		+ "('"+ username +"','"+ password +"','"+ role +"','"+firstname+"','"+lastname+"')");
-			        attributes.put("message","Success");
-			        return new ModelAndView(attributes, "test.ftl");
+			        attributes.put("message",username);
+			        return new ModelAndView(attributes, "registered.ftl");
 			        /*ArrayList<String> output = new ArrayList<String>();
 			        while (rs.next()) {
 			          output.add( "Read from DB: " + rs.getTimestamp("tick"));
