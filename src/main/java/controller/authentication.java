@@ -31,7 +31,7 @@ public class authentication {
 				 connect = DatabaseUrl.extract().getConnection();
 				 	
 			        Statement stmt = connect.createStatement();
-			        stmt.executeUpdate("Insert into appUser (username,password,role,firstname,lastname) values "
+			        stmt.executeUpdate("Insert into appUser values "
 			        		+ "("+ username +","+ password +","+ role +","+firstname+","+lastname+")");
 			        attributes.put("messages","Success");
 			        return new ModelAndView(attributes, "test.ftl");
