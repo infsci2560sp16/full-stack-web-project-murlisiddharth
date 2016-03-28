@@ -24,7 +24,7 @@ public class authentication {
 			String firstname = (String) request.queryParams("firstname");
 			String lastname = (String)request.queryParams("lastname");
 			String sex = (String) request.queryParams("sex");
-			String password = (String) request.queryParams("password");
+			String password = (String) request.queryParams("password2");
 			String username = (String) request.queryParams("username");
 			
 			 try {
@@ -33,7 +33,7 @@ public class authentication {
 			        Statement stmt = connect.createStatement();
 			        stmt.executeUpdate("Insert into appUser values "
 			        		+ "('"+ username +"','"+ password +"','"+ role +"','"+firstname+"','"+lastname+"')");
-			        attributes.put("messages","Success");
+			        attributes.put("message","Success");
 			        return new ModelAndView(attributes, "test.ftl");
 			        /*ArrayList<String> output = new ArrayList<String>();
 			        while (rs.next()) {
