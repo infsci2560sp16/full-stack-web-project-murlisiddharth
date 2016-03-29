@@ -51,7 +51,7 @@ public class authentication {
 			
 			try{
 				connect = DatabaseUrl.extract().getConnection();
-				PreparedStatement ps = connect.prepareStatement("select * from appUser where username = ?");
+				PreparedStatement ps = connect.prepareStatement("select * from appUser where username = '?'");
 				ps.setString(1, username);
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()){
