@@ -67,11 +67,11 @@ public class authentication {
 						
 					}else{
 						attributes.put("message", "Username or Password does not match");
-						return new ModelAndView(attributes, "loginFailure.ftl");
+						return new ModelAndView(attributes, "error.ftl");
 					}
 				}else{
 					attributes.put("message", "Username Does not exist");
-					return new ModelAndView(attributes, "loginFailure.ftl");
+					return new ModelAndView(attributes, "error.ftl");
 				}
 			}catch (Exception e){
 				attributes.put("message", "There was an error: " + e);
