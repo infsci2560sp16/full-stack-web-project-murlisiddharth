@@ -17,7 +17,7 @@
 		<div class="form-group">
 		<label class="col-sm-14 control-label">${message}</label>
 		</div>
-		<form class="form-horizontal login" action="validate">
+		<form class="form-horizontal login" method="post" action="authenticate">
 
 				<div class="form-group">
 				
@@ -25,7 +25,7 @@
 						Name</label>
 
 					<div class="col-sm-4">
-						<input type="text" class="form-control" id="username" required
+						<input type="text" class="form-control" id="username" name="username" required
 							placeholder="Enter Username Name">
 					</div>
 				</div>
@@ -34,7 +34,7 @@
 					<label for="password" class="col-sm-2 control-label">Password</label>
 
 					<div class="col-sm-4">
-						<input type="password" class="form-control" id="password"
+						<input type="password" class="form-control" id="password" name="password"
 							placeholder="Enter Password">
 					</div>
 				</div>

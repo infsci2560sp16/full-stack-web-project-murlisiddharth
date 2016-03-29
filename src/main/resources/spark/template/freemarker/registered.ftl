@@ -15,7 +15,6 @@
 	<div class="container">
 		<div class="jumbotron">
 		<div class="form-group">
-		<label class="col-sm-14 control-label">${message}</label>
 		</div>
 		<h3>You have successfully registered as <span class="label label-primary">${message}</span></h3>		
 		</div>

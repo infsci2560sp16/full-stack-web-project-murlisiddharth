@@ -28,20 +28,13 @@ public class authentication {
 			String username = (String) request.queryParams("username");
 			
 			 try {
-				 connect = DatabaseUrl.extract().getConnection();
+				 	connect = DatabaseUrl.extract().getConnection();
 				 	
 			        Statement stmt = connect.createStatement();
 			        stmt.executeUpdate("Insert into appUser values "
 			        		+ "('"+ username +"','"+ password +"','"+ role +"','"+firstname+"','"+lastname+"')");
 			        attributes.put("message",username);
 			        return new ModelAndView(attributes, "registered.ftl");
-			        /*ArrayList<String> output = new ArrayList<String>();
-			        while (rs.next()) {
-			          output.add( "Read from DB: " + rs.getTimestamp("tick"));
-			        }
-
-			        attributes.put("results", output);
-			        return new ModelAndView(attributes, "db.ftl");*/
 			      } catch (Exception e) {
 			        attributes.put("message", "There was an error: " + e);
 			        return new ModelAndView(attributes, "test.ftl");
@@ -49,5 +42,43 @@ public class authentication {
 			        if (connect != null) try{connect.close();} catch(SQLException e){}
 			      }
 		} , new FreeMarkerEngine());
+		
+		post("/authenticate",(request,response)->{
+			String username = (String) request.queryParams("username");
+			String password = (String) request.queryParams("password");
+			Connection connect = null;
+			Map<String, Object> attributes = new HashMap<>();
+			
+			try{
+				connect = DatabaseUrl.extract().getConnection();
+				PreparedStatement ps = connect.prepareStatement("select * from appUser where username = ?");
+				ps.setString(1, username);
+				ResultSet rs = ps.executeQuery();
+				if(rs.next()){
+					String passwdFromDB = rs.getString("password");
+					String role = rs.getString("role");
+					if( passwdFromDB.equals(password)){
+						attributes.put("message",username);
+						if(role.equalsIgnoreCase("manager")){
+							return new ModelAndView(attributes, "homePageManager.ftl");
+						}else{
+							return new ModelAndView(attributes, "homePageParticipant.ftl");
+						}
+						
+					}else{
+						attributes.put("message", "Username or Password does not match");
+						return new ModelAndView(attributes, "loginFailure.ftl");
+					}
+				}else{
+					attributes.put("message", "Username Does not exist");
+					return new ModelAndView(attributes, "loginFailure.ftl");
+				}
+			}catch (Exception e){
+				attributes.put("message", "There was an error: " + e);
+		        return new ModelAndView(attributes, "error.ftl");
+			}finally{
+				if (connect != null) try{connect.close();} catch(SQLException e){}
+			}	
+		},new FreeMarkerEngine());
 	}
 }
