@@ -57,7 +57,7 @@ public class authentication {
 				if(rs.next()){
 					String passwdFromDB = rs.getString("password");
 					String role = rs.getString(3);
-					if( passwdFromDB.equals(password)){
+					if( passwdFromDB.equalsIgnoreCase(password)){
 						attributes.put("message",username);
 						if(role.equalsIgnoreCase("manager")){
 							return new ModelAndView(attributes, "homePageManager.ftl");
