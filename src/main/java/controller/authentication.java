@@ -60,7 +60,7 @@ public class authentication {
 					
 					if(true){
 						attributes.put("message",username);
-						if(role.equalsIgnoreCase("manager")){
+						if(role.equalsIgnoreCase("Manager")){
 							return new ModelAndView(attributes, "homePageManager.ftl");
 						}else{
 							return new ModelAndView(attributes, "homePageParticipant.ftl");
