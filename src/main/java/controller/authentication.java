@@ -55,7 +55,7 @@ public class authentication {
 				ps.setString(1, username);
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()){
-					String passwdFromDB = rs.getString(2);
+					String passwdFromDB = rs.getString("password");
 					String role = rs.getString(3);
 					if( passwdFromDB.equals(password)){
 						attributes.put("message",username);
@@ -66,7 +66,7 @@ public class authentication {
 						}
 						
 					}else{
-						attributes.put("message", "Username or Password does not match");
+						attributes.put("message", passwdFromDB);
 						return new ModelAndView(attributes, "error.ftl");
 					}
 				}else{
