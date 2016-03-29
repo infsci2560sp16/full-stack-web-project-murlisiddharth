@@ -51,12 +51,12 @@ public class authentication {
 			
 			try{
 				connect = DatabaseUrl.extract().getConnection();
-				PreparedStatement ps = connect.prepareStatement("select * from appUser where username = '?'");
+				PreparedStatement ps = connect.prepareStatement("select * from appUser where username = ?");
 				ps.setString(1, username);
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()){
-					String passwdFromDB = rs.getString("password");
-					String role = rs.getString("role");
+					String passwdFromDB = rs.getString(2);
+					String role = rs.getString(3);
 					if( passwdFromDB.equals(password)){
 						attributes.put("message",username);
 						if(role.equalsIgnoreCase("manager")){
