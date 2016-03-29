@@ -66,7 +66,7 @@ public class authentication {
 						}
 						
 					}else{
-						attributes.put("message", passwdFromDB);
+						attributes.put("message", password);
 						return new ModelAndView(attributes, "error.ftl");
 					}
 				}else{
