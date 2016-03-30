@@ -50,7 +50,7 @@ public class authentication {
 			Map<String, Object> attributes = new HashMap<>();
 			
 			try{
-				connect = DatabaseUrl.extract().getConnection();
+				/*connect = DatabaseUrl.extract().getConnection();
 				PreparedStatement ps = connect.prepareStatement("select * from appUser where username = ?");
 				ps.setString(1, username);
 				ResultSet rs = ps.executeQuery();
@@ -58,9 +58,9 @@ public class authentication {
 					String passwdFromDB = rs.getString("password");
 					String role = rs.getString("role");
 					
-					if(true){
+					if( passwdFromDB.equalsIgnoreCase(password)){
 						attributes.put("message",username);
-						if(role.equalsIgnoreCase("Manager")){
+						if(role.equalsIgnoreCase("manager")){
 							return new ModelAndView(attributes, "homePageManager.ftl");
 						}else{
 							return new ModelAndView(attributes, "homePageParticipant.ftl");
@@ -72,8 +72,9 @@ public class authentication {
 					}
 				}else{
 					attributes.put("message", "Username Does not exist");
-					return new ModelAndView(attributes, "error.ftl");
-				}
+					return new ModelAndView(attributes, "error.ftl");*/
+				attributes.put("message",username);
+				return new ModelAndView(attributes, "homePageManager.ftl");
 			}catch (Exception e){
 				attributes.put("message", "There was an error: " + e);
 		        return new ModelAndView(attributes, "error.ftl");

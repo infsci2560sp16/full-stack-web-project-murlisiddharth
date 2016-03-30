@@ -19,7 +19,8 @@ public class Main {
 		staticFileLocation("/public");
 		
 		Object a = new authentication();
-
+		Object b = new managerController();
+		
 		get("/", (request, response) -> { // HomePage for the website
 			Map<String, Object> attributes = new HashMap<>();
 			attributes.put("message", "Hello World!");
