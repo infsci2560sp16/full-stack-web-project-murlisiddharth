@@ -47,7 +47,7 @@ public class managerController {
 				ResultSet rs = ps.executeQuery();
 				while(rs.next()){
 					xml += "<tournament>"+ 
-							"<sportType>"+ rs.getString("sporttype")+"</sportType>"+
+							"<sportType>"+ rs.getString("sportType")+"</sportType>"+
 							"<tournamentType>"+rs.getString("tournamenttype")+"</tournamentType>"+
 							"<startDate>"+rs.getString("startDate")+"</startDate>"+
 							"<endDate>"+rs.getString("endDate")+"</endDate>"+
@@ -61,7 +61,7 @@ public class managerController {
 				}
 				return xml;
 			}catch (Exception e){
-		        return "DataBase Error";
+		        return "DataBase Error. Please check later";
 			}finally{
 				if (connect != null) try{connect.close();} catch(SQLException e){}
 			}	
